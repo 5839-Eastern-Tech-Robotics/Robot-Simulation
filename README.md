@@ -6,9 +6,9 @@ a simulator built in pygame to help code motion algorithms and read log files
  - robot driving
 ### TODO
  - GUI
+ - Drift
  - Motion Class
  - log file reading
- - recording paths
  - exporting path as program
 
 ## Setup
