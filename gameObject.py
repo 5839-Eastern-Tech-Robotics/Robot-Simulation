@@ -9,3 +9,4 @@ class GameObject(pygame.sprite.Sprite):
     def __init__(self, app: App, rect: RectLike, surface: pygame.Surface, collidable: bool = True, moveable: bool = False, maxSpeedMod: float = 0) -> None:
         super().__init__(app.main_group)
         
+        
