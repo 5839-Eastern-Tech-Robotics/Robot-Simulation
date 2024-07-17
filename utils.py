@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Tuple, List, overload
+from typing import Tuple, List, Sequence, overload
 import math
 
 from settings import DEG_TO_RAD
@@ -117,3 +117,15 @@ class Pose:
 
     def getVector(self) -> Pose:
         return Pose(self.x, self.y)
+    
+    def project(self, onto: Pose) -> Pose:
+        return (self * onto) / (onto * onto) * onto
+    
+    def magnitude(self) -> float:
+        return math.sqrt(self.magnitude_squared())
+    
+    def magnitude_squared(self) -> float:
+        return self * self
+    
+    
+    

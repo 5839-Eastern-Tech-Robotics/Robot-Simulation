@@ -17,7 +17,7 @@ RAD_TO_DEG = 180 / math.pi
 DEG_TO_RAD = math.pi / 180
 #                     RPM         Wheel Diameter
 ROBOT_MAX_WHEEL_VEL = 360 * (math.pi * 3.25) / 60
-ROBOT_DRIFT_FACTOR = 0.8
+ROBOT_DRIFT_FACTOR = 0.9
 ROBOT_TRACKWIDTH = 12
 
 HOLD_MIN_TIME = 150

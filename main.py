@@ -23,18 +23,17 @@ class App:
         ######################
         #      INIT GUI      #
         ######################
-        self.gui_manager = pygame_gui.UIManager(RES)
+        self.ui_manager = pygame_gui.UIManager(RES)
         self.ui_elements = {}
-        self.ui_elements["toggle_record"] = pygame_gui.elements.UIDropDownMenu(
-            ["PID", "Pure Pursuit", "Ramsete"],
-            "Ramsete",
-            (625, 5, 150, 30),
-            self.gui_manager,
+        self.ui_elements["reset_path"] = pygame_gui.elements.UIButton(
+            Rect(625, 5, 100, 30),
+            "Reset Path",
+            self.ui_manager
         )
 
     def update(self) -> None:
         self.main_group.update()
-        self.gui_manager.update(self.delta_time)
+        self.ui_manager.update(self.delta_time)
         pygame.display.set_caption(f'{self.clock.get_fps(): .1f}')
         self.delta_time = self.clock.tick(60) / 1000
 
@@ -43,7 +42,7 @@ class App:
         self.screen.blit(self.bg, (0, 0))
         self.main_group.draw(self.screen)
         self.robot.draw(self.screen)
-        self.gui_manager.draw_ui(self.screen)
+        self.ui_manager.draw_ui(self.screen)
         pygame.display.flip()
 
     def check_events(self) -> None:
@@ -55,8 +54,11 @@ class App:
 
             if e.type == pygame.KEYDOWN and e.key == pygame.K_RETURN:
                 self.robot.user_driving = not self.robot.user_driving
+                
+            if e.type == pygame_gui.UI_BUTTON_PRESSED and e.ui_element == self.ui_elements['reset_path']:
+                self.robot.clear_positions()
 
-            self.gui_manager.process_events(e)
+            self.ui_manager.process_events(e)
 
     def run(self) -> None:
         while True:
